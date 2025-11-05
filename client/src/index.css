@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+	/* Background - Deep Charcoal */
+	--color-dark-bg-0: hsl(220 20% 34%);
+	--color-dark-bg-50: hsl(220 20% 26%);
+	--color-dark-bg-100: hsl(220 20% 18%);
+	--color-dark-bg-200: hsl(220 20% 12%);
+	--color-dark-bg-300: hsl(220 20% 8%);
+
+	/* dark-primary - Modern Green */
+	--color-dark-primary-100: hsl(145 70% 65%);
+	--color-dark-primary-200: hsl(145 70% 55%);
+	--color-dark-primary-300: hsl(145 70% 45%);
+	--color-dark-primary-400: hsl(145 70% 35%);
+	--color-dark-primary-500: hsl(145 70% 25%);
+
+	/* dark-secondary - Modern blue*/
+    --color-dark-secondary-100: hsl(210 80% 65%);
+    --color-dark-secondary-200: hsl(210 80% 55%);
+	--color-dark-secondary-300: hsl(210 80% 45%);
+
+	/* Warning - Warm Amber */
+	--color-dark-yellow-50: hsl(35 90% 75%);
+	--color-dark-yellow-100: hsl(35 90% 65%);
+	--color-dark-yellow-200: hsl(35 90% 55%);
+	--color-dark-yellow-300: hsl(35 90% 45%);
+
+	/* Danger - Vivid Red */
+	--color-dark-red-100: hsl(0 85% 70%);
+	--color-dark-red-200: hsl(0 85% 60%);
+	--color-dark-red-300: hsl(0 85% 50%);
+
+	--font-susemono: "SUSE Mono";
+}
+
+@font-face {
+	font-family: "SUSE Mono";
+	src: url("./assets/fonts/SUSEMono-VariableFont_wght.ttf");
+	/* font-weight: normal;
+	font-style: normal; */
+}
+
+html, body, #root {
+	height: 100%;
+}
+* {
+	/* border: 1px solid red; */
+	font-family: "SUSE Mono", "Courier New", Courier, monospace;
+}
+
+
+.text-stroke {
+	-webkit-text-stroke: 1px white;
+}
