@@ -1,16 +1,47 @@
-# React + Vite
+# Symfero
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a communication web platform, currently under development. The structure of this repo is based on client-server model, clearly separated front from back. The backend is an API ExpressJS server (referred to as server from now on) which handles connection to the database. The frontend is a bare React app (referred to as client from now on). built into a static site using vite.
 
-Currently, two official plugins are available:
+The server is hardcoded to allow requests only from a single origin, the client app. The reason for using a server insted of directly accessing the database from the client is because vite doesn't support secrets (env vars as secrets), and also for a clearer separation of the processes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Build and host locally
+To deploy the app locally, you need to start both the client and the server, after configuring the .env for both
 
-## React Compiler
+### Server
+Create a file ```./server/.env``` and set the following variables
+```.env
+SERVER_HOSTNAME=localhost
+SERVER_PORT=3000
+CLIENT_HOSTNAME=localhost
+CLIENT_PORT=5173
+SUPABASE_URL=<YOUR_SUPABASE_URL>
+SUPABASE_ANON_KEY=<YOUR_SUPABASE_ANON_KEY>
+```
+Server and client hosts and ports can be set to any value, but keep in mind that they need to be consistent, or the client wont be able to access the server.
+The supabase url and key are required to access the database, I'll provide the table layouts later. Also, you can configure the project to use some other database or method of storage.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+To run the server:
+```bash
+cd server
+npm run start
+```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Client
+You can use the client as a dev server, or build it with vite and preview locally.
+The client also needs a ```./client/.env``` file with the url of the server
+```
+VITE_SERVER_API='http://localhost:3000'
+```
+Notice that you have to specify the port if other than ```:80``` or the cors wont work.
+Then run:
+```bash
+cd client
+npm run dev
+```
+or:
+```bash
+cd client
+npm run build
+npm run preview
+```
+Also, when running preview, you need to hardcode the port used in the dev server, because vite assigns a different port when running vite preview. Put the correct port in the package.json
