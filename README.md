@@ -29,7 +29,7 @@ npm run start
 ### Client
 You can use the client as a dev server, or build it with vite and preview locally.
 The client also needs a ```./client/.env``` file with the url of the server
-```
+```.env
 VITE_SERVER_API='http://localhost:3000'
 ```
 Notice that you have to specify the port if other than ```:80``` or the cors wont work.
