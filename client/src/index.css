@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: "SUSE Mono";
-	src: url("./assets/fonts/SUSEMono-VariableFont_wght.ttf");
+	src: url("/assets/fonts/SUSEMono-VariableFont_wght.ttf");
 	/* font-weight: normal;
 	font-style: normal; */
 }

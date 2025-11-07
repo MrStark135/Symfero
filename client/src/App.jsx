@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ArrowRightIcon, DocumentIcon, PhoneIcon, VideoIcon } from "./assets/icons"
+import { ArrowRightIcon, DocumentIcon, PhoneIcon, VideoIcon } from "./utils/icons"
 import ChatThumb from "./components/ChatThumb"
 import Search from "./components/Search"
 import { useQuery } from "@tanstack/react-query";
@@ -9,7 +8,7 @@ function App() {
 		queryKey: ['messages'],
 		queryFn: async () => {
 			const response = await fetch(
-				`http://localhost:3000/messages`
+				import.meta.env.VITE_SERVER_API + "/messages"
 			)
 			return await response.json()
 		},
@@ -23,7 +22,7 @@ function App() {
 			{/* Sidebar */}
 			<div className="bg-dark-bg-200 border-r-2 border-dark-bg-300 w-2/7">
 				<Search />
-				<ChatThumb name="Adolf Hitler" img="/src/assets/images/Adolf_Hitler.jpg" lastMessage="Have you seen..." />
+				<ChatThumb name="Adolf Hitler" img="/assets/images/Adolf_Hitler.jpg" lastMessage="Have you seen..." />
 				<ChatThumb online={true} />
 				<ChatThumb online={online} />
 			</div>

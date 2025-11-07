@@ -1,17 +1,15 @@
 # Logs
-*/npm-debug.log*
+# if any specify here
 
 # dependencies
 */node_modules
-*/dist
-*/dist-ssr
+client/dist
 */*.local
 client/.vite
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.DS_Store
 
 # envirnoment
-*/.env
+*/*.env*

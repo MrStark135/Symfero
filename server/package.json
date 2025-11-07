@@ -1,20 +1,21 @@
 {
-  "name": "symfero-server",
-  "version": "1.0.0",
-  "description": "Server for Symfero chat app",
+  "name": "server",
+  "version": "0.0.0",
+  "description": "",
   "license": "ISC",
   "author": "",
   "type": "module",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "node"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

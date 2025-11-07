@@ -1,16 +1,22 @@
 import express from 'express';
-import cors from 'cors'
+import cors from 'cors';
+import { configDotenv } from 'dotenv';
 
 const app = express();
-const port = 3000;
-const corsOptions = {
-	origin: 'http://localhost:5173'
-}
+configDotenv();
 
-app.use(cors(corsOptions))
+const protocol = 'http://';
+const client = String(protocol+process.env.CLIENT_HOSTNAME+':'+process.env.CLIENT_PORT);
+const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
 
+app.use(cors(
+	{ origin: client }
+));
+app.get('/', (req, res) => {
+	res.send('Hello World!')
+});
 app.get('/messages', (req, res) => {
-	res.send([
+	const messages = [
 		{
 			time: Date.now(),
 			sender: "Adolf Hitler",
@@ -24,9 +30,14 @@ app.get('/messages', (req, res) => {
 			sender: "Adolf Hitler",
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 		}
-	])
+	];
+	res.setHeader('Access-Control-Allow-Origin', client);
+	res.send(messages);
+});
+app.get('/env', (req, res) => {
+	res.send(process.env);
 })
 
-app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`)
-})
+app.listen(process.env.SERVER_PORT, process.env.SERVER_HOSTNAME, () => {
+	console.log(`Symfero server created at ${server} serving only ${client}`);
+});

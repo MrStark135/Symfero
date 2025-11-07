@@ -1,4 +1,4 @@
-import { TerminalIcon } from "../assets/icons";
+import { TerminalIcon } from "../utils/icons";
 
 export default function DesktopLayout({children}) {
 	return (
