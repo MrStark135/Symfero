@@ -5,7 +5,7 @@ import { configDotenv } from 'dotenv';
 const app = express();
 configDotenv();
 
-const protocol = 'http://';
+const protocol = process.env.PROTOCOL;
 const client = String(protocol+process.env.CLIENT_HOSTNAME+':'+process.env.CLIENT_PORT);
 const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
 
