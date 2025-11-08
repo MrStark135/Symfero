@@ -13,7 +13,6 @@ Create a file ```./server/.env``` and set the following variables
 SERVER_HOSTNAME=localhost
 SERVER_PORT=3000
 CLIENT_HOSTNAME=localhost
-CLIENT_PORT=5173
 SUPABASE_URL=<YOUR_SUPABASE_URL>
 SUPABASE_ANON_KEY=<YOUR_SUPABASE_ANON_KEY>
 ```

@@ -6,14 +6,14 @@ const app = express();
 configDotenv();
 
 const protocol = process.env.PROTOCOL;
-const client = String(protocol+process.env.CLIENT_HOSTNAME+':'+process.env.CLIENT_PORT);
+const client = String(protocol+process.env.CLIENT_HOSTNAME);
 const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
 
 app.use(cors(
-	{ origin: protocol+process.env.CLIENT_HOSTNAME }
+	{ origin: client }
 ));
 app.get('/', (req, res) => {
-	res.send('Hello World!')
+	res.send('Symfero server');
 });
 app.get('/messages', (req, res) => {
 	const messages = [
@@ -31,11 +31,14 @@ app.get('/messages', (req, res) => {
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 		}
 	];
-	res.setHeader('Access-Control-Allow-Origin', protocol+process.env.CLIENT_HOSTNAME );
+	res.setHeader('Access-Control-Allow-Origin', client );
 	res.send(messages);
 });
 app.get('/env', (req, res) => {
-	res.send(process.env);
+	res.send({
+		client: client,
+		server: server
+	});
 })
 
 app.listen(process.env.SERVER_PORT, process.env.SERVER_HOSTNAME, () => {
