@@ -10,7 +10,7 @@ const client = String(protocol+process.env.CLIENT_HOSTNAME+':'+process.env.CLIEN
 const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
 
 app.use(cors(
-	{ origin: client }
+	{ origin: protocol+process.env.CLIENT_HOSTNAME }
 ));
 app.get('/', (req, res) => {
 	res.send('Hello World!')
