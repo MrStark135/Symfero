@@ -5,26 +5,12 @@ import { configDotenv } from 'dotenv';
 const app = express();
 configDotenv();
 
-const protocol = process.env.PROTOCOL;
-const client = String(protocol+process.env.CLIENT_HOSTNAME);
-const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
-// const allowClients = ['::1', 'localhost', '127.0.0.1', '::ffff:127.0.0.1'];
-
 app.use(cors({}));
 
 // allow to communication only with the client
 const restrictAccess = (req, res, next) => {
-	let allowed = false;
-	// allowClients.forEach((host) => {
-	// 	if (host == req.ip) {
-	// 		allowed = true;
-	// 		return;
-	// 	} 
-	// });
-	if (req.ip == process.env.CLIENT_HOSTNAME) allowed = true;
-	if (allowed) next();
+	if (req.ip == process.env.CLIENT_HOSTNAME) next();
 	else res.status(403).send('Host not allowed: '+req.ip);
-	// next();
 };
 app.use(restrictAccess);
 
@@ -47,16 +33,12 @@ app.get('/messages', (req, res) => {
 			content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 		}
 	];
-	// res.setHeader('Access-Control-Allow-Origin', client );
 	res.send(messages);
 });
 app.get('/env', (req, res) => {
-	res.send({
-		client: client,
-		server: server
-	});
+	res.send('no data');
 })
 
 app.listen(process.env.SERVER_PORT, () => {
-	console.log(`Symfero server created at ${server} serving only ${client}`);
+	console.log(`Symfero server created serving only ${process.env.CLIENT_HOSTNAME}`);
 });
