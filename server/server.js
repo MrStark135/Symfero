@@ -8,19 +8,20 @@ configDotenv();
 const protocol = process.env.PROTOCOL;
 const client = String(protocol+process.env.CLIENT_HOSTNAME);
 const server = String(protocol+process.env.SERVER_HOSTNAME+':'+process.env.SERVER_PORT);
-const allowClients = ['::1', 'localhost', '127.0.0.1', '::ffff:127.0.0.1'];
+// const allowClients = ['::1', 'localhost', '127.0.0.1', '::ffff:127.0.0.1'];
 
 app.use(cors({}));
 
 // allow to communication only with the client
 const restrictAccess = (req, res, next) => {
 	let allowed = false;
-	allowClients.forEach((host) => {
-		if (host == req.ip) {
-			allowed = true;
-			return;
-		} 
-	});
+	// allowClients.forEach((host) => {
+	// 	if (host == req.ip) {
+	// 		allowed = true;
+	// 		return;
+	// 	} 
+	// });
+	if (req.ip == process.env.CLIENT_HOSTNAME) allowed = true;
 	if (allowed) next();
 	else res.status(403).send('Host not allowed: '+req.ip);
 	// next();
