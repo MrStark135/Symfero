@@ -13,3 +13,6 @@ client/.vite
 
 # envirnoment
 */*.env*
+
+# testing
+*.http

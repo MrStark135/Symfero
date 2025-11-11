@@ -10,13 +10,12 @@ To deploy the app locally, you need to start both the client and the server, aft
 ### Server
 Create a file ```./server/.env``` and set the following variables
 ```.env
-SERVER_HOSTNAME=localhost
-SERVER_PORT=3000
+SERVER_PORT=5000
 CLIENT_HOSTNAME=localhost
 SUPABASE_URL=<YOUR_SUPABASE_URL>
 SUPABASE_ANON_KEY=<YOUR_SUPABASE_ANON_KEY>
 ```
-Server and client hosts and ports can be set to any value, but keep in mind that they need to be consistent, or the client wont be able to access the server.
+Server and client hosts and ports can be set to any value, but keep in mind that they need to be consistent, or the client won't be able to access the server.
 The supabase url and key are required to access the database, I'll provide the table layouts later. Also, you can configure the project to use some other database or method of storage.
 
 To run the server:
@@ -29,7 +28,7 @@ npm run start
 You can use the client as a dev server, or build it with vite and preview locally.
 The client also needs a ```./client/.env``` file with the url of the server
 ```.env
-VITE_SERVER_API='http://localhost:3000'
+VITE_SERVER_API='http://localhost:5000'
 ```
 Notice that you have to specify the port if other than ```:80``` or the cors wont work.
 Then run:
