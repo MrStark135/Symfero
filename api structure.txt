@@ -1,0 +1,29 @@
+### API FORMAT
+
+### AUTH ROUTE
+Register a new user, or login an existing one 
+
+/auth
+	/register
+	/login
+
+###
+req.body = {
+	name, email, password
+}
+res = {
+	name, email, password, sessionAllowed?, session?
+}
+
+######
+
+### CHAT ROUTE
+
+/chat
+	/messages					- get all messages for given chat
+	/recent?limit=				- get all recent chats, if no limit specified
+	/search?mode=&limit=		- search all users|groups (selected by mode value) matching searchstring, limit results
+	/add?mode=					- create a chat for given user, or add user to group
+
+###
+mode = 'user'|'group'

@@ -43,3 +43,43 @@ export const DocumentIcon = ({color = 'currentColor', className}) => (
 		<rect x="10" y="16" width="12" height="2"/>
 	</svg>
 )
+
+export const AddIcon = ({color = 'currentColor', className}) => (
+	<svg id="icon" xmlns="http://www.w3.org/2000/svg" className={className} stroke="none" fill={color} viewBox="0 0 32 32">
+		<polygon width="32" height="32" points="17,15 17,8 15,8 15,15 8,15 8,17 15,17 15,24 17,24 17,17 24,17 24,15 "/>
+		<rect fill="none" x="0" y="0" width="32" height="32"/>
+	</svg>
+)
+
+export const UserIcon = ({color = 'currentColor', className}) => (
+	<svg id="icon" xmlns="http://www.w3.org/2000/svg" className={className} stroke="none" fill={color} viewBox="0 0 32 32">
+		<path d="M16,4a5,5,0,1,1-5,5,5,5,0,0,1,5-5m0-2a7,7,0,1,0,7,7A7,7,0,0,0,16,2Z"/>
+		<path d="M26,30H24V25a5,5,0,0,0-5-5H13a5,5,0,0,0-5,5v5H6V25a7,7,0,0,1,7-7h6a7,7,0,0,1,7,7Z"/>
+		<rect fill="none" width="32" height="32"/>
+	</svg>
+)
+
+export const ChatIcon = ({color = 'currentColor', className}) => (
+	<svg id="icon" xmlns="http://www.w3.org/2000/svg" className={className} stroke="none" fill={color} viewBox="0 0 32 32">
+		<path d="M17.74,30,16,29l4-7h6a2,2,0,0,0,2-2V8a2,2,0,0,0-2-2H6A2,2,0,0,0,4,8V20a2,2,0,0,0,2,2h9v2H6a4,4,0,0,1-4-4V8A4,4,0,0,1,6,4H26a4,4,0,0,1,4,4V20a4,4,0,0,1-4,4H21.16Z" transform="translate(0 0)"/>
+		<rect x="8" y="10" width="16" height="2"/>
+		<rect x="8" y="16" width="10" height="2"/>
+		<rect fill="none" width="32" height="32"/>
+	</svg>
+)
+
+export function IconbyName(name, props) {
+	switch(name) {
+		case "TerminalIcon": return <TerminalIcon {...props}/>;
+		case "CatalogIcon": return <CatalogIcon {...props}/>;
+		case "PhoneIcon": return <PhoneIcon {...props}/>;
+		case "VideoIcon": return <VideoIcon {...props}/>;
+		case "SearchIcon": return <SearchIcon {...props}/>;
+		case "ArrowRightIcon": return <ArrowRightIcon {...props}/>;
+		case "DocumentIcon": return <DocumentIcon {...props}/>;
+		case "AddIcon": return <AddIcon {...props}/>;
+		case "UserIcon": return <UserIcon {...props}/>;
+		case "ChatIcon": return <ChatIcon {...props}/>;
+		default: return (<></>);
+	}
+}

@@ -15,4 +15,5 @@ client/.vite
 */*.env*
 
 # testing
+testing
 *.http
