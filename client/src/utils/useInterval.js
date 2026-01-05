@@ -15,3 +15,12 @@ export function useInterval(callback, delay) {
 		return () => clearInterval(id);
 	}, [delay]);
 }
+
+// async function useInterval() {
+// 	useEffect(() => {
+// 		let interval = setInterval(async () => {
+// 			await checkOnline();
+// 		}, 3000);
+// 		return () => clearInterval(interval);
+// 	});
+// }

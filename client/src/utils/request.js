@@ -9,7 +9,7 @@ export default async function requestServer(relativeUrl, method, body, searchPar
 		// actual request
 		const response = await fetch(import.meta.env.VITE_SERVER_API + relativeUrl +
 			// url searchParams if provided 
-			(searchParams ? '?'+new URLSearchParams(searchParams).toString():''),
+			(searchParams ? '?'+new URLSearchParams(searchParams).toString() : ''),
 			// options
 			{
 				method: method,
@@ -19,7 +19,7 @@ export default async function requestServer(relativeUrl, method, body, searchPar
 		let { data, error } = await response.json();
 		return { data, error };	
 	} catch (error) {
-		console.log(error);
+		// console.log('Request error:', error.toString());
 		return { data: null, error: { label: 'Internal error', description: error.toString() } };
 	}
 }

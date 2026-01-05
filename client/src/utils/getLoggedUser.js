@@ -1,5 +1,9 @@
 export default function getLoggedUser() {
-    if (!sessionStorage.getItem('session')) throw new Error('No user logged in, or sessionStorage not working');
+    if (!sessionStorage.getItem('session'))
+    {
+        throw new Error('No user logged in, or sessionStorage not working');
+        return;
+    }
 
     return {
         name: sessionStorage.getItem('name'),

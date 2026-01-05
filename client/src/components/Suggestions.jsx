@@ -16,7 +16,7 @@ export default function Suggestions({ input, list, searchGlobal }) {
 	});
 
 	async function addChat(user, type, chatName) {
-		console.log(chatName)
+		setShow(false);
 		if (type === 'user') {
 			const { data, error } = await requestServer('/chat/add', 'POST', { user: user, loggedUser: getLoggedUser(), name: chatName }, { type: type });
 			return { data, error };

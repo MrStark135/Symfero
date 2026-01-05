@@ -41,7 +41,7 @@ export default function LoginPage() {
 	}
 		
 	async function register(name, email, password) {
-		const { data, error } = await requestServer('/auth/register', { name: name, email: email, password: password });
+		const { data, error } = await requestServer('/auth/register', 'POST', { name: name, email: email, password: password });
 		return { data, error };
 	}
 

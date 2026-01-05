@@ -1,5 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import requestServer from "../utils/request";
+import { useInterval } from "../utils/useInterval";
 
 export default function ChatThumb({ chat, setCurrentChat }) {
 	
@@ -11,6 +13,18 @@ export default function ChatThumb({ chat, setCurrentChat }) {
 	const img = "/assets/icons/user.svg"
 	const lastMessageArg = "Last message";
 	const online = true;
+
+	async function checkOnline() {
+		const { data, error } = await requestServer('/chat/online', 'POST', { chat: chat });
+		console.log(data, error);
+	}
+
+	useEffect(() => {
+		let interval = setInterval(async () => {
+			checkOnline();
+		}, 3000);
+		return () => clearInterval(interval);
+	});
 
 	const [lastMessage, setLastMessage] = useState(lastMessageArg);
 	const lastMessageContainer = useRef(null);

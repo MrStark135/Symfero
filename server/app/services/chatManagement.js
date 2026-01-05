@@ -1,4 +1,5 @@
 import supabase from "../utils/supabase.js";
+import { getUserBy } from "./userManagement.js";
 
 export async function getChatBy(chat) {
 	let actualChat = null;
@@ -49,6 +50,17 @@ export async function usersHaveChat(user1, user2) {
 	console.log(error, data, "data");
 	return true;
 	if (error) return { error };
+}
+
+export async function getUsersFromChat(chat) {
+	const { data, error } = await supabase.from('chat_members').select()
+		.eq('chat_id', chat.id);
+	if (error) return { data, error };
+	let users = [];
+	for (let item of data) {
+		users.push(await getUserBy({ id: item.user_id}));
+	}
+	return { data: users, error };
 }
 
 export async function getChats(user, limit) {

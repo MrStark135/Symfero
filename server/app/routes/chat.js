@@ -1,6 +1,6 @@
 import express from "express";
 import { getUserBy, searchUser } from "../services/userManagement.js";
-import { addUserToChat, createChat, getChats, matchChat, searchChat, usersHaveChat } from "../services/chatManagement.js";
+import { addUserToChat, createChat, getChatBy, getChats, getUsersFromChat, matchChat, searchChat, usersHaveChat } from "../services/chatManagement.js";
 
 const chatRouter = express.Router();
 export default chatRouter;
@@ -69,4 +69,10 @@ chatRouter.post('/all', async (req, res) => {
 	const user = await getUserBy(req.body.loggedUser);
 	const { data, error } = await getChats(user, req.query?.limit);
 	res.send({ data, error });
+});
+
+chatRouter.post('/online', async (req, res) => {
+	const chat = await getChatBy(req.body?.chat);
+	const { data, error } = await getUsersFromChat(chat);
+	return { data, error };
 });

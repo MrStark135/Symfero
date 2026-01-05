@@ -31,6 +31,7 @@ export default function MessageInput({ currentChat }) {
 				<button className="p-[7px] hover:text-dark-primary-100 hover:bg-dark-bg-300 focus:outline-none focus:text-dark-primary-100 focus:bg-dark-bg-300"
 					onClick={
 						() => {
+							if (textInput.length === 0) return;
 							sendMessage();
 						}
 					}>

@@ -45,11 +45,6 @@ export default function Search({ value, setValue }) {
 					})
 				});
 			}
-			else {
-				// console.log(sessionStorage.getItem('session'));
-				// let { data, error } = await loadChats(sessionStorage.getItem('session'));
-				// console.log({ data, error });
-			}
 			
 			if (suggestionsTemp.length === 0) suggestionsTemp.push({ label: 'No results' })
 				setSuggestions(suggestionsTemp);
@@ -59,19 +54,21 @@ export default function Search({ value, setValue }) {
 
 	return (
 		<div className="flex items-stretch gap-1 p-2">
-			<div className="relative">
+			<div className="relative grow">
 				<div className="flex border-2 border-dark-bg-300 rounded-sm h-full">
 					<input tabIndex={1} ref={input} type="text" className="self-stretch w-full text-lg placeholder-dark-bg-0 pl-2 
 						focus:outline-none caret-dark-primary-100"
 						placeholder="Search chats..." value={value} 
 						onFocus={(event) => { 
 							event.preventDefault();
+							event.target.value.length > 0 ? setSuggestions([{ label: 'Loading...' }]) : '';
 							handleSuggestions(event.target); 
 						}}
 						onChange={
 							(event) => {
 								event.preventDefault();
 								setValue(event.target.value);
+								event.target.value.length > 0 ? setSuggestions([{ label: 'Loading...' }]) : '';
 								handleSuggestions(event.target);
 							}}
 					/>
