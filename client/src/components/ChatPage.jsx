@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeftIcon, ArrowRightIcon, PhoneIcon, VideoIcon } from "../utils/icons"
 import ChatThumb from "./ChatThumb"
 import Search from "./Search"
@@ -18,6 +18,8 @@ export default function ChatPage() {
 	const [showSidebar, setShowSidebar] = useState(true);
 	const [mobile, setMobile] = useState(true);
 
+	const messagesContainer = useRef(null);
+
 	const mesgLock = new Lock();
 	const chatLock = new Lock();
 
@@ -25,6 +27,10 @@ export default function ChatPage() {
 		if (window.innerWidth >= 768) setMobile(false);
 		else setMobile(true);
 	}
+
+	useEffect(() => {
+		messagesContainer.current.scroll(0, 999999999999999);
+	}, [messages]);
 
 	// control whether messages are loaded, so that the old messages are cleared on currentChat change
 	useEffect(() => {
@@ -133,7 +139,7 @@ export default function ChatPage() {
 					</div>
 				</div>
 				<div className="grow w-full relative">
-					<div tabIndex={-1} className="bg-dark-bg-100 flex flex-col overflow-y-auto text-dark-yellow-50 absolute top-0 bottom-0 left-0 right-0">
+					<div ref={messagesContainer} tabIndex={-1} className="bg-dark-bg-100 flex flex-col overflow-y-auto text-dark-yellow-50 absolute top-0 bottom-0 left-0 right-0">
 						{
 							messages === null && <Loading className="text-dark-secondary-100 text-xl text-center p-6"/> ||
 							messages.map((item, idx) => {
