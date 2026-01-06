@@ -5,7 +5,7 @@ import requestServer from "../utils/request";
 import { Lock } from "../utils/lock";
 import getLoggedUser from "../utils/getLoggedUser";
 
-export default function Search({ value, setValue }) {
+export default function Search({ value, setValue, loadedChats, setCurrentChat }) {
 
 	const [searchGlobal, setSearchGlobal] = useState(false);
 	const [showSuggestions, setShowSuggestions] = useState(false);
@@ -34,7 +34,7 @@ export default function Search({ value, setValue }) {
 					suggestionsTemp.push({
 						typeIcon: "UserIcon",
 						type: "user",
-						label: item.name
+						label: item.name,
 					})
 				});
 				groupRes?.data?.forEach((item) => {
@@ -42,6 +42,20 @@ export default function Search({ value, setValue }) {
 						typeIcon: "ChatIcon",
 						type: "group",
 						label: item.name
+					})
+				});
+				// TODO
+				// suggestionsTemp.push({
+				// 	typeIcon: "ChatIcon",
+				// 	label: "New group"
+				// });
+			} else {
+				loadedChats?.forEach((item) => {
+					suggestionsTemp.push({
+						typeIcon: item.type === 'user' ? 'UserIcon' : 'ChatIcon',
+						type: item.type,
+						label: item.displayName,
+						...item
 					})
 				});
 			}
@@ -73,7 +87,7 @@ export default function Search({ value, setValue }) {
 							}}
 					/>
 				</div>
-				<Suggestions input={input} list={suggestions} searchGlobal={searchGlobal} />
+				<Suggestions input={input} list={suggestions} searchGlobal={searchGlobal} setCurrentChat={setCurrentChat}/>
 			</div>
 			<button tabIndex={2} onClick={ async () => { setSearchGlobal(!searchGlobal) }}
 				className={ `${searchGlobal ? 'text-dark-secondary-100 bg-dark-bg-300' : 'text-dark-primary-200 bg-dark-bg-200'} rounded-sm border-2 border-dark-bg-300 hover:bg-dark-bg-300 hover:text-dark-primary-200 focus:outline-none focus:bg-dark-bg-300` }>

@@ -3,7 +3,7 @@ import { AddIcon, IconbyName } from "../utils/icons";
 import requestServer from "../utils/request";
 import getLoggedUser from "../utils/getLoggedUser";
 
-export default function Suggestions({ input, list, searchGlobal }) {
+export default function Suggestions({ input, list, searchGlobal, setCurrentChat }) {
 
 	const [show, setShow] = useState(false);
 	const suggestionsContainer = useRef(null);
@@ -33,6 +33,7 @@ export default function Suggestions({ input, list, searchGlobal }) {
 			<div className="flex items-stretch justify-stretch">
 				<button onClick={
 					async (event) => {
+						if (!searchGlobal) setCurrentChat(item);
 						// the chat naming convention for user chats is a must. A single space separates the usernames. The space is a forbidden char in usernames:)
 						let chatName = item.type === "user" ? sessionStorage.getItem('name') + ' ' + item.label : item.label;
 						const { data, error } = await addChat({ name: item.label}, item.type, chatName);
@@ -55,7 +56,7 @@ export default function Suggestions({ input, list, searchGlobal }) {
 
 	return (
 		show ?
-		<div ref={suggestionsContainer} className="absolute w-full bg-dark-bg-100/97 rounded-sm border-2 border-dark-bg-300 mt-1">
+		<div ref={suggestionsContainer} className="z-100 absolute w-full bg-dark-bg-100/97 rounded-sm border-2 border-dark-bg-300 mt-1">
 			{
 				list.map((item, idx) => {
 					return (

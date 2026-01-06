@@ -35,6 +35,12 @@ export const ArrowRightIcon = ({color = 'currentColor', className}) => (
 	</svg>
 )
 
+export const ArrowLeftIcon = ({color = 'currentColor', className}) => (
+	<svg id="icon" xmlns="http://www.w3.org/2000/svg" className={className} fill={color} width="32" height="32" viewBox="0 0 32 32">
+		<polygon points="14 26 15.41 24.59 7.83 17 28 17 28 15 7.83 15 15.41 7.41 14 6 4 16 14 26"/>
+	</svg>
+)
+
 export const DocumentIcon = ({color = 'currentColor', className}) => (
 	<svg id="icon" xmlns="http://www.w3.org/2000/svg" className={className} fill={color} viewBox="0 0 32 32">
 		<path d="M25.7,9.3l-7-7C18.5,2.1,18.3,2,18,2H8C6.9,2,6,2.9,6,4v24c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V10C26,9.7,25.9,9.5,25.7,9.3

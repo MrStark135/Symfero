@@ -68,11 +68,8 @@ chatRouter.post('/search', async (req, res) => {
 chatRouter.post('/all', async (req, res) => {
 	const user = await getUserBy(req.body.loggedUser);
 	const { data, error } = await getChats(user, req.query?.limit);
+	for (let item of data) {
+		item.online = true;
+	}
 	res.send({ data, error });
-});
-
-chatRouter.post('/online', async (req, res) => {
-	const chat = await getChatBy(req.body?.chat);
-	const { data, error } = await getUsersFromChat(chat);
-	return { data, error };
 });

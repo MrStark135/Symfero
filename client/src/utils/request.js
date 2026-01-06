@@ -1,4 +1,8 @@
+// import { Lock } from "./lock";
+// const lock = new Lock();
+
 export default async function requestServer(relativeUrl, method, body, searchParams) {
+	// lock.value
 	try {
 		// body if provided
 		let optionsBody = {
